@@ -171,3 +171,6 @@ private.key
 
 # Ignore virtualenv
 .osqueryvenv
+
+# Ignore Visual Studio Code
+.vscode
