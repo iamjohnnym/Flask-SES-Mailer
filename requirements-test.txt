@@ -1,0 +1,6 @@
+nose
+flake8
+nose-cov
+bandit
+python-coveralls
+codacy-coverage

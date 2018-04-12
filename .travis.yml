@@ -1,0 +1,49 @@
+language: python
+
+python:
+- 2.7
+
+before_script:
+- pip install -r requirements.txt
+- pip install -r requirements-test.txt
+
+script:
+- make test
+- make bandit
+
+after_success:
+- coveralls
+- coverage xml
+- python-codacy-coverage -r coverage.xml
+
+deploy:
+- provider: pypi
+  distributions: sdist
+  server: https://test.pypi.org/legacy/
+  user: iamjohnnym
+  password:
+    secure: c2GXAj8d9IeE9yEs0ZoDrjxlQ7t0NgPTWyESqGt8ZSI5s51MPLX/KQVrKoEe6YoXce2clse6p8hCRF6XZAMs2UumE2tuuqd9YRYBVL6AKLjmlmEFi7EQgTqAr+lxsl6DzG/Ds4CFK30sEDSLQYeQnHEqSvYEabV9NETUpOhBmMkEg2i1cPM5u2yckMD49ZgMCBgKsoTuf1p+s8/6zjrdTA89pUjNg81BAUolVTMxhUzd2qUKPtlXZumJ2K31lPE+ZX6xAiVfbk+6qHTbQcYhMC+0RAeQR35zQvVPjfYYKSI3thVY5nmtuoFeR5BX2KkDgN7qtY2cl0k4k68qe5ycGnD094UR5uf4JPL2iyfAzs4CR/jkh1PfmjlgYm2Cz8W3pPzzcGbwNHLFbrVgyyHj5B4UZFEGGCgwNcUP5y+lIlX4DBwCfYve+Dt9mxDlRE2Yl7IFeJHHwud9d5TgIwInX+eDwIVQyK7RE6Fk3UiYjy/u8NtmtdXPXfSJZ6QzciBXPIrJvm2eOjbCSLUwvjs/gTX6aUGTdX9vcK1t9aU8WKLa6Ld3WtRMdJOvK6MLGlqGNqPMX47NSOpx6zSBsfhOTVYIi4Sn5/GKJQ1Bm6TgxVd699dCWlxdBbCcDm5ZKyC/v6UAZiyo/dNqrTe/C+6rg4hsVvgtPIGrITtAjn/uFKE=
+  on:
+    branch: staging
+    tags: false
+    condition: $TRAVIS_PYTHON_VERSION = "2.7"
+- provider: pypi
+  distributions: sdist
+  server: https://test.pypi.org/legacy/
+  user: iamjohnnym
+  password:
+    secure: c2GXAj8d9IeE9yEs0ZoDrjxlQ7t0NgPTWyESqGt8ZSI5s51MPLX/KQVrKoEe6YoXce2clse6p8hCRF6XZAMs2UumE2tuuqd9YRYBVL6AKLjmlmEFi7EQgTqAr+lxsl6DzG/Ds4CFK30sEDSLQYeQnHEqSvYEabV9NETUpOhBmMkEg2i1cPM5u2yckMD49ZgMCBgKsoTuf1p+s8/6zjrdTA89pUjNg81BAUolVTMxhUzd2qUKPtlXZumJ2K31lPE+ZX6xAiVfbk+6qHTbQcYhMC+0RAeQR35zQvVPjfYYKSI3thVY5nmtuoFeR5BX2KkDgN7qtY2cl0k4k68qe5ycGnD094UR5uf4JPL2iyfAzs4CR/jkh1PfmjlgYm2Cz8W3pPzzcGbwNHLFbrVgyyHj5B4UZFEGGCgwNcUP5y+lIlX4DBwCfYve+Dt9mxDlRE2Yl7IFeJHHwud9d5TgIwInX+eDwIVQyK7RE6Fk3UiYjy/u8NtmtdXPXfSJZ6QzciBXPIrJvm2eOjbCSLUwvjs/gTX6aUGTdX9vcK1t9aU8WKLa6Ld3WtRMdJOvK6MLGlqGNqPMX47NSOpx6zSBsfhOTVYIi4Sn5/GKJQ1Bm6TgxVd699dCWlxdBbCcDm5ZKyC/v6UAZiyo/dNqrTe/C+6rg4hsVvgtPIGrITtAjn/uFKE=
+  on:
+    branch: master
+    tags: false
+    condition: $TRAVIS_PYTHON_VERSION = "2.7"
+- provider: pypi
+  distributions: sdist
+  server: https://upload.pypi.org/legacy/
+  user: iamjohnnym
+  password:
+    secure: c2GXAj8d9IeE9yEs0ZoDrjxlQ7t0NgPTWyESqGt8ZSI5s51MPLX/KQVrKoEe6YoXce2clse6p8hCRF6XZAMs2UumE2tuuqd9YRYBVL6AKLjmlmEFi7EQgTqAr+lxsl6DzG/Ds4CFK30sEDSLQYeQnHEqSvYEabV9NETUpOhBmMkEg2i1cPM5u2yckMD49ZgMCBgKsoTuf1p+s8/6zjrdTA89pUjNg81BAUolVTMxhUzd2qUKPtlXZumJ2K31lPE+ZX6xAiVfbk+6qHTbQcYhMC+0RAeQR35zQvVPjfYYKSI3thVY5nmtuoFeR5BX2KkDgN7qtY2cl0k4k68qe5ycGnD094UR5uf4JPL2iyfAzs4CR/jkh1PfmjlgYm2Cz8W3pPzzcGbwNHLFbrVgyyHj5B4UZFEGGCgwNcUP5y+lIlX4DBwCfYve+Dt9mxDlRE2Yl7IFeJHHwud9d5TgIwInX+eDwIVQyK7RE6Fk3UiYjy/u8NtmtdXPXfSJZ6QzciBXPIrJvm2eOjbCSLUwvjs/gTX6aUGTdX9vcK1t9aU8WKLa6Ld3WtRMdJOvK6MLGlqGNqPMX47NSOpx6zSBsfhOTVYIi4Sn5/GKJQ1Bm6TgxVd699dCWlxdBbCcDm5ZKyC/v6UAZiyo/dNqrTe/C+6rg4hsVvgtPIGrITtAjn/uFKE=
+  on:
+    branch: master
+    tags: true
+    condition: $TRAVIS_PYTHON_VERSION = "2.7"
