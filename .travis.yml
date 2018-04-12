@@ -17,33 +17,33 @@ after_success:
 - python-codacy-coverage -r coverage.xml
 
 deploy:
-- provider: pypi
-  distributions: sdist
-  server: https://test.pypi.org/legacy/
-  user: iamjohnnym
-  password:
-    secure: c2GXAj8d9IeE9yEs0ZoDrjxlQ7t0NgPTWyESqGt8ZSI5s51MPLX/KQVrKoEe6YoXce2clse6p8hCRF6XZAMs2UumE2tuuqd9YRYBVL6AKLjmlmEFi7EQgTqAr+lxsl6DzG/Ds4CFK30sEDSLQYeQnHEqSvYEabV9NETUpOhBmMkEg2i1cPM5u2yckMD49ZgMCBgKsoTuf1p+s8/6zjrdTA89pUjNg81BAUolVTMxhUzd2qUKPtlXZumJ2K31lPE+ZX6xAiVfbk+6qHTbQcYhMC+0RAeQR35zQvVPjfYYKSI3thVY5nmtuoFeR5BX2KkDgN7qtY2cl0k4k68qe5ycGnD094UR5uf4JPL2iyfAzs4CR/jkh1PfmjlgYm2Cz8W3pPzzcGbwNHLFbrVgyyHj5B4UZFEGGCgwNcUP5y+lIlX4DBwCfYve+Dt9mxDlRE2Yl7IFeJHHwud9d5TgIwInX+eDwIVQyK7RE6Fk3UiYjy/u8NtmtdXPXfSJZ6QzciBXPIrJvm2eOjbCSLUwvjs/gTX6aUGTdX9vcK1t9aU8WKLa6Ld3WtRMdJOvK6MLGlqGNqPMX47NSOpx6zSBsfhOTVYIi4Sn5/GKJQ1Bm6TgxVd699dCWlxdBbCcDm5ZKyC/v6UAZiyo/dNqrTe/C+6rg4hsVvgtPIGrITtAjn/uFKE=
-  on:
-    branch: staging
-    tags: false
-    condition: $TRAVIS_PYTHON_VERSION = "2.7"
-- provider: pypi
-  distributions: sdist
-  server: https://test.pypi.org/legacy/
-  user: iamjohnnym
-  password:
-    secure: c2GXAj8d9IeE9yEs0ZoDrjxlQ7t0NgPTWyESqGt8ZSI5s51MPLX/KQVrKoEe6YoXce2clse6p8hCRF6XZAMs2UumE2tuuqd9YRYBVL6AKLjmlmEFi7EQgTqAr+lxsl6DzG/Ds4CFK30sEDSLQYeQnHEqSvYEabV9NETUpOhBmMkEg2i1cPM5u2yckMD49ZgMCBgKsoTuf1p+s8/6zjrdTA89pUjNg81BAUolVTMxhUzd2qUKPtlXZumJ2K31lPE+ZX6xAiVfbk+6qHTbQcYhMC+0RAeQR35zQvVPjfYYKSI3thVY5nmtuoFeR5BX2KkDgN7qtY2cl0k4k68qe5ycGnD094UR5uf4JPL2iyfAzs4CR/jkh1PfmjlgYm2Cz8W3pPzzcGbwNHLFbrVgyyHj5B4UZFEGGCgwNcUP5y+lIlX4DBwCfYve+Dt9mxDlRE2Yl7IFeJHHwud9d5TgIwInX+eDwIVQyK7RE6Fk3UiYjy/u8NtmtdXPXfSJZ6QzciBXPIrJvm2eOjbCSLUwvjs/gTX6aUGTdX9vcK1t9aU8WKLa6Ld3WtRMdJOvK6MLGlqGNqPMX47NSOpx6zSBsfhOTVYIi4Sn5/GKJQ1Bm6TgxVd699dCWlxdBbCcDm5ZKyC/v6UAZiyo/dNqrTe/C+6rg4hsVvgtPIGrITtAjn/uFKE=
-  on:
-    branch: master
-    tags: false
-    condition: $TRAVIS_PYTHON_VERSION = "2.7"
-- provider: pypi
-  distributions: sdist
-  server: https://upload.pypi.org/legacy/
-  user: iamjohnnym
-  password:
-    secure: c2GXAj8d9IeE9yEs0ZoDrjxlQ7t0NgPTWyESqGt8ZSI5s51MPLX/KQVrKoEe6YoXce2clse6p8hCRF6XZAMs2UumE2tuuqd9YRYBVL6AKLjmlmEFi7EQgTqAr+lxsl6DzG/Ds4CFK30sEDSLQYeQnHEqSvYEabV9NETUpOhBmMkEg2i1cPM5u2yckMD49ZgMCBgKsoTuf1p+s8/6zjrdTA89pUjNg81BAUolVTMxhUzd2qUKPtlXZumJ2K31lPE+ZX6xAiVfbk+6qHTbQcYhMC+0RAeQR35zQvVPjfYYKSI3thVY5nmtuoFeR5BX2KkDgN7qtY2cl0k4k68qe5ycGnD094UR5uf4JPL2iyfAzs4CR/jkh1PfmjlgYm2Cz8W3pPzzcGbwNHLFbrVgyyHj5B4UZFEGGCgwNcUP5y+lIlX4DBwCfYve+Dt9mxDlRE2Yl7IFeJHHwud9d5TgIwInX+eDwIVQyK7RE6Fk3UiYjy/u8NtmtdXPXfSJZ6QzciBXPIrJvm2eOjbCSLUwvjs/gTX6aUGTdX9vcK1t9aU8WKLa6Ld3WtRMdJOvK6MLGlqGNqPMX47NSOpx6zSBsfhOTVYIi4Sn5/GKJQ1Bm6TgxVd699dCWlxdBbCcDm5ZKyC/v6UAZiyo/dNqrTe/C+6rg4hsVvgtPIGrITtAjn/uFKE=
-  on:
-    branch: master
-    tags: true
-    condition: $TRAVIS_PYTHON_VERSION = "2.7"
+  - provider: pypi
+    distributions: sdist
+    server: https://test.pypi.org/legacy/
+    user: iamjohnnym
+    password:
+      secure: K2swV6OVouJWL8grGGSmrZ/iq6cWuE3cIcXSTnKMSqSyD41EF8SNk+fTSY1dv17d0fxClWZ5ub5u9XHeJy9wuKsl9gyaPPFvlnF2HVVoKdnfr+J6mot8AIh3zpdA+21AzlX3NssT5Y+5RLypOPLzyDHJm7fEidqRSnIDacnN6vRo6o/PbFgGDTw3sK6E7z8Ppg9BjGtsBOsK3NH5pfFkDVdEzO+GzPRoegDTpackDvg7w8d/7bAbKcdQhDVzNeU2fSS/eBd1vwG5LVpB9pEqOAIfGihIPgI81RMj4gJtKiEAO/9zbvna6xgGo6rf+U8N2ApeTDQfvplG2VMS4xdINdtyEEDyxYBkey+r2dM7+uHnZmOt61UXf4pZQVOj0aGjF7SaQgTKfDu8tgsw02fsA2RfqFLvF+X5CYL33nPGLaWbQHUgSP0vpe26NWGwA4G/39XQP56QckkTx9RwqZ+f/FreBGNNnvQ/qQ0yPaZYMmo6JJ6RUibUVXHqeN2NfCrjHA275SR6e1Dz8ZbZD5KNwzR6D/FJpgMl40ZiZC3uUipDulInNwoAy+W69ZUVSQUrpcY1tIckrkrOWQaqdKR+HzRl4mxbpXZDUWcd2a72xHKe28/wjd+FH63HIkLb2N1M2vlGmdh1fch8paPjPo8BunB1QTJ+zxoS8xB5jWPZqmQ=
+    on:
+      branch: staging
+      tags: false
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+  - provider: pypi
+    distributions: sdist
+    server: https://test.pypi.org/legacy/
+    user: iamjohnnym
+    password:
+      secure: K2swV6OVouJWL8grGGSmrZ/iq6cWuE3cIcXSTnKMSqSyD41EF8SNk+fTSY1dv17d0fxClWZ5ub5u9XHeJy9wuKsl9gyaPPFvlnF2HVVoKdnfr+J6mot8AIh3zpdA+21AzlX3NssT5Y+5RLypOPLzyDHJm7fEidqRSnIDacnN6vRo6o/PbFgGDTw3sK6E7z8Ppg9BjGtsBOsK3NH5pfFkDVdEzO+GzPRoegDTpackDvg7w8d/7bAbKcdQhDVzNeU2fSS/eBd1vwG5LVpB9pEqOAIfGihIPgI81RMj4gJtKiEAO/9zbvna6xgGo6rf+U8N2ApeTDQfvplG2VMS4xdINdtyEEDyxYBkey+r2dM7+uHnZmOt61UXf4pZQVOj0aGjF7SaQgTKfDu8tgsw02fsA2RfqFLvF+X5CYL33nPGLaWbQHUgSP0vpe26NWGwA4G/39XQP56QckkTx9RwqZ+f/FreBGNNnvQ/qQ0yPaZYMmo6JJ6RUibUVXHqeN2NfCrjHA275SR6e1Dz8ZbZD5KNwzR6D/FJpgMl40ZiZC3uUipDulInNwoAy+W69ZUVSQUrpcY1tIckrkrOWQaqdKR+HzRl4mxbpXZDUWcd2a72xHKe28/wjd+FH63HIkLb2N1M2vlGmdh1fch8paPjPo8BunB1QTJ+zxoS8xB5jWPZqmQ=
+    on:
+      branch: master
+      tags: false
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+  - provider: pypi
+    distributions: sdist
+    server: https://upload.pypi.org/legacy/
+    user: iamjohnnym
+    password:
+      secure: K2swV6OVouJWL8grGGSmrZ/iq6cWuE3cIcXSTnKMSqSyD41EF8SNk+fTSY1dv17d0fxClWZ5ub5u9XHeJy9wuKsl9gyaPPFvlnF2HVVoKdnfr+J6mot8AIh3zpdA+21AzlX3NssT5Y+5RLypOPLzyDHJm7fEidqRSnIDacnN6vRo6o/PbFgGDTw3sK6E7z8Ppg9BjGtsBOsK3NH5pfFkDVdEzO+GzPRoegDTpackDvg7w8d/7bAbKcdQhDVzNeU2fSS/eBd1vwG5LVpB9pEqOAIfGihIPgI81RMj4gJtKiEAO/9zbvna6xgGo6rf+U8N2ApeTDQfvplG2VMS4xdINdtyEEDyxYBkey+r2dM7+uHnZmOt61UXf4pZQVOj0aGjF7SaQgTKfDu8tgsw02fsA2RfqFLvF+X5CYL33nPGLaWbQHUgSP0vpe26NWGwA4G/39XQP56QckkTx9RwqZ+f/FreBGNNnvQ/qQ0yPaZYMmo6JJ6RUibUVXHqeN2NfCrjHA275SR6e1Dz8ZbZD5KNwzR6D/FJpgMl40ZiZC3uUipDulInNwoAy+W69ZUVSQUrpcY1tIckrkrOWQaqdKR+HzRl4mxbpXZDUWcd2a72xHKe28/wjd+FH63HIkLb2N1M2vlGmdh1fch8paPjPo8BunB1QTJ+zxoS8xB5jWPZqmQ=
+    on:
+      branch: master
+      tags: true
+      condition: $TRAVIS_PYTHON_VERSION = "2.7"
