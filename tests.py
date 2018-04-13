@@ -1,4 +1,3 @@
-import json
 import unittest
 import coverage
 
@@ -30,9 +29,6 @@ class TestSESMailer(unittest.TestCase):
 
     def tearDown(self):
         pass
-
-    def test_connect(self):
-        print dir(mailer)
 
     def test_message(self):
         to_match = {
@@ -99,6 +95,13 @@ class TestSESMailer(unittest.TestCase):
         )
         self.assertEqual(destination, {'ToAddresses': ['test@example.com']})
 
+    def test_destination_from_list(self):
+        destination = mailer.destination(
+            to_addresses=['test@example.com','test+test@example.com']
+        )
+        self.assertEqual(destination, {'ToAddresses': [
+            'test@example.com', 'test+test@example.com']})
+
     def test_send(self):
         message = mailer.send(
             subject='test send function',
@@ -106,3 +109,12 @@ class TestSESMailer(unittest.TestCase):
             to_addresses='john.martin@configure.systems'
         )
         self.assertTrue(message)
+
+    def test_send_fail(self):
+
+        message = mailer.send(
+            subject='test send function',
+            body='This is the test of the body',
+            to_addresses=''
+        )
+        self.assertFalse(message)

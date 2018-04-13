@@ -32,22 +32,48 @@ class SESMailer(object):
                 ctx.ses_connection = self._connect()
             return ctx.ses_connection
 
-    def destination(self, to_addresses=[]):
+    @classmethod
+    def destination(self, to_addresses):
+        """Converts strings to lists and formats a valid SES Destination
+        model.
+
+        Args:
+            to_addresses: a list of or a string of an email address
+
+        Returns:
+            'ToAddresses' Dict to match the SES Destination Model.
+        """
+
         address_list = []
         if isinstance(to_addresses, str):
             address_list.append(to_addresses)
+        elif isinstance(to_addresses, list):
+            address_list = to_addresses
         return { 'ToAddresses': address_list }
 
     def message(self, subject, body, body_type='Text'):
+        """Formats the arguments into a valid SES Message.  The SES Message
+        contains the Subject and Body of an email.
+
+        Args:
+            subject: An email subject
+            body: The contents of the body of the email
+            body_type: Determines if the email should render Html or
+                       just Text.
+                Default: 'Text'
+                Options: ['Html', 'Text']
+
+        Returns:
+            A Dict containing 'Subject' and 'Body', a valid SES Message.
+        """
+
         message = {}
         message.update(self._subject(subject))
         message.update(self._body(body, body_type))
         return message
 
     def _body(self, body, body_type='Text'):
-        """ Returns a dict to match SES's body model. if you specify
-        body_Type="Html", it will send an email with valid html rendering.
-        """
+        # Change body_type to Text when encountering an invalid type.
         if not body_type in ['Text', 'Html']:
             body_type = 'Text'
         body = {
@@ -69,14 +95,29 @@ class SESMailer(object):
         }
 
     def send(self, subject, body, to_addresses, body_type='Text', **kwargs):
+        """Send the email via Amazon SES.
+
+        Args:
+            subject: Email's subject line.
+            body: Contents of the email body.
+            to_addresses: Either a list of or a single email address.
+            body_type: Send the email as plain Text or as Html to render HTML.
+                Default: 'Text'
+                Options: ['Html', 'Text']
+
+        Returns:
+            Request Id of the sent email.
+        """
+
         # Try to send the email.
         try:
+            # Generate the message
             message = self.message(
                 subject=subject,
                 body=body,
                 body_type=body_type
             )
-            #Provide the contents of the email.
+            # Provide the contents of the email.
             response = self.client.send_email(
                 Destination=self.destination(to_addresses),
                 Message=message,
