@@ -6,7 +6,7 @@ def readme():
 
 setup(
     name='Flask-SES-Mailer',
-    version='1.0.0',
+    version='1.0.1',
     url='https://github.com/iamjohnnym/Flask-SES-Mailer',
     license='Apache2',
     author='john martin',
