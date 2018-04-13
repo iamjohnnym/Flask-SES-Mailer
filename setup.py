@@ -1,21 +1,17 @@
-"""
-Flask-SES-Mailer
--------------
-
-Flask extension for sending email using AWS Simple Email Service.
-"""
 from setuptools import setup
 
+def readme():
+    with open('README.md', 'w') as f:
+        return f.read()
 
 setup(
     name='Flask-SES-Mailer',
-    version='1.0',
+    version='1.0.0',
     url='https://github.com/iamjohnnym/Flask-SES-Mailer',
     license='Apache2',
     author='john martin',
     author_email='john.martin@configure.systems',
     description='Flask extension to send mail via AWS Simple Email Service.',
-    long_description=__doc__,
     packages=['flask_ses_mailer'],
     zip_safe=False,
     include_package_data=True,
